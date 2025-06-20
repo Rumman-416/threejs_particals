@@ -10,7 +10,7 @@ import { bleach } from "three/examples/jsm/tsl/display/BleachBypass.js";
  */
 const textureLoader = new THREE.TextureLoader();
 
-const wallTexture = textureLoader.load("/textures/wall.jpg");
+const particalTexture = textureLoader.load("/textures/3.png");
 /**
  * Textures
  */
@@ -31,7 +31,7 @@ const scene = new THREE.Scene();
 
 //geometry
 const particalsGeometry = new THREE.BufferGeometry();
-const count = 5000;
+const count = 50000;
 
 const positions = new Float32Array(count * 3);
 
@@ -47,8 +47,15 @@ console.log(positions);
 
 //material
 const particalsMaterial = new THREE.PointsMaterial({
-  size: 0.02,
+  size: 0.2,
   sizeAttenuation: true, // close big --- far small
+  color: "red",
+  transparent: true,
+  alphaMap: particalTexture,
+  // alphaTest: 0.001,
+  // depthTest: false,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending,
 });
 
 //points
